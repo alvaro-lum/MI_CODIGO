@@ -1,0 +1,7 @@
+Modelo;R2 (Varianza Explicada);MAE (Error Absoluto);RMSE (Error Raíz Cuadrada)
+Lasso;0.0129;0.2263;0.283
+RandomForest;-0.2132;0.2347;0.3137
+GaussianProcess;-0.3948;0.2533;0.3364
+SVR;-0.4285;0.2584;0.3404
+XGBoost;-0.4572;0.2667;0.3438
+LinearRegression;-0.5214;0.2681;0.3513

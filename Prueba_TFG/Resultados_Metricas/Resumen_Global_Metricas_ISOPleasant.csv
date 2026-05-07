@@ -1,0 +1,3 @@
+Modelo;R2 (Varianza Explicada);MAE (Error Absoluto);RMSE (Error Raíz Cuadrada);MSE (Error² Medio);JS Divergence (0=Perfecto);KL Divergence;DME (Error Consenso)
+RandomForest;-0,1835;0,2294;0,3099;0,096;0,3759;2,4102;0,1163
+LinearRegression;-0,5214;0,2681;0,3513;0,1234;0,1835;0,1474;0,0552

@@ -1,0 +1,7 @@
+Modelo;JS Divergence (0=Perfecto);KL Divergence;DME (Error Consenso)
+LinearRegression;0.3954;0.8655;0.2381
+Lasso;0.5227;10.3468;0.2916
+SVR;0.5628;10.885;0.2717
+GaussianProcess;0.6004;16.3623;0.3099
+RandomForest;0.6042;16.3742;0.2956
+XGBoost;0.6218;16.4344;0.2702

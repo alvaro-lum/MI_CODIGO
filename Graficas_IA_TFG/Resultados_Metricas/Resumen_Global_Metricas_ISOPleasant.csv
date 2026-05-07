@@ -1,0 +1,7 @@
+Modelo;R2 (Varianza Explicada);MAE (Error Absoluto);RMSE (Error Raíz Cuadrada);MSE (Error² Medio);JS Divergence (0=Perfecto);KL Divergence;DME (Error Consenso)
+Lasso;0,0129;0,2263;0,283;0,0801;0,2803;2,6182;0,0263
+RandomForest;-0,2132;0,2347;0,3137;0,0984;0,3947;3,1184;0,1207
+GaussianProcess;-0,3948;0,2533;0,3364;0,1132;0,4702;10,1866;0,1486
+SVR;-0,4285;0,2584;0,3404;0,1159;0,29;2,0075;0,1186
+XGBoost;-0,4572;0,2667;0,3438;0,1182;0,3267;2,1244;0,1514
+LinearRegression;-0,5214;0,2681;0,3513;0,1234;0,1835;0,1474;0,0552
