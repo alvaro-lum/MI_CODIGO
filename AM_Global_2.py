@@ -353,7 +353,7 @@ def generar_auditoria_individual(mejores_modelos, X_train, y_train, X_test, y_te
         fases = [
             ('1. Train\n(3 Ciudades)', y_train, pred_train),
             ('2. Validation\n(CV-5 Pliegues)', y_train, pred_val),
-            ('3. Test\n(Groningen)', y_test, pred_test)
+            ('3. Test\n(Examen)', y_test, pred_test)
         ]
         
         # Recopilo los datos para graficarlos

@@ -348,7 +348,7 @@ def generar_auditoria_individual(mejores_modelos, X_train, y_train, X_test, y_te
         fases = [
             ('1. Train\n(3 Ciudades)', y_train, pred_train),
             ('2. Validation\n(CV-5 Pliegues)', y_train, pred_val),
-            ('3. Test\n(Groningen)', y_test, pred_test)
+            ('3. Test\n(Examen)', y_test, pred_test)
         ]
         
         # Recopilo los datos para graficarlos
@@ -648,7 +648,7 @@ def generar_super_prediccion_ensamblada(mejores_modelos, df_ranking_universal, X
     plt.plot([limite_min, limite_max], [limite_min, limite_max], color='red', linestyle='--', linewidth=2)
     
     plt.title(f'Realidad vs Súper Predicción\n({mejor_lineal} + {mejor_complejo}) - {target_name}', fontsize=14, pad=15)
-    plt.xlabel('Respuesta Real (Groningen)')
+    plt.xlabel('Respuesta Real')
     plt.ylabel('Súper Predicción Ensamblada')
     plt.grid(True, linestyle=':', alpha=0.7)
     

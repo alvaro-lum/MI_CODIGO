@@ -467,7 +467,7 @@ def generar_auditoria_individual_completa(mejores_modelos, X_train, y_train, X_t
         fases = [
             ('1. Train\n(Memorización)', y_train_singles, pred_train),
             ('2. Validación\n(CV-5 Pliegues)', y_train_singles, pred_val),
-            ('3. Test\n(Groningen)', y_test_singles, pred_test)
+            ('3. Test\n(Examen)', y_test_singles, pred_test)
         ]
         
         for fase_nombre, y_real, y_pred in fases:
