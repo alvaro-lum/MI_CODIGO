@@ -19,7 +19,7 @@ MI_TFG/
 └── soundscape_env/      # Entorno virtual de Python (se creará a continuación).
 ```
 
-🛠️ Configuración del Entorno Virtual
+## 🛠️ Configuración del Entorno Virtual
 
 Sigue estos pasos para crear y activar el entorno virtual donde se ejecutarán los scripts:
 
