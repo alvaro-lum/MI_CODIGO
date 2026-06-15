@@ -86,7 +86,7 @@ Python 3.1x.x ('soundscape_env': venv) .\soundscape_env\Scripts\python.exe
 
 Si la configuración es correcta, verás el texto (soundscape_env) al principio de la línea de comandos.
 
-⚠️ Recuerda: El proceso de selección del intérprete solo se realiza una vez. Sin embargo, cada vez que abras de nuevo VS Code, es recomendable cerrar la terminal antigua que se abre por defecto y abrir una nueva para asegurarte de que el entorno se cargue correctamente.
+> **⚠️ Recuerda:** El proceso de selección del intérprete solo se realiza una vez. Sin embargo, cada vez que abras de nuevo VS Code, es recomendable cerrar la terminal antigua que se abre por defecto y abrir una nueva para asegurarte de que el entorno se cargue correctamente.
 
 ## Configuración de carpetas y códigos.
 
