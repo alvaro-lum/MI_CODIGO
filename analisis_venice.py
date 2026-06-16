@@ -1241,7 +1241,7 @@ if __name__ == "__main__":
             generar_csv_machine_learning_venecia()
         elif opcion == '0':
             print("Saliendo del programa...")
-            print("¡Adiós y mucho ánimo con tu análisis de Venecia! 💂‍♂️☕")
+            print("¡Adiós y mucho ánimo! 💂‍♂️☕")
             break
         else:
             print("❌ Opción no válida. Por favor, elige un número del 0 al 13.")
