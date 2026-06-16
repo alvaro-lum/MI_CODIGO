@@ -135,7 +135,7 @@ if ciudad_test in dfs_ciudades:
     # El examen final (datos nunca vistos)
     df_test_crudo = dfs_ciudades[ciudad_test].copy()
     
-    # Junto los datos de las otras 3 ciudades para crear el material de estudio de la IA
+    # Junto los datos de las otras 3 ciudades para crear el material de estudio del ML
     lista_entrenamiento = [df for ciudad, df in dfs_ciudades.items() if ciudad != ciudad_test]
     df_train_crudo = pd.concat(lista_entrenamiento, ignore_index=True)
     
@@ -186,7 +186,7 @@ def optimizar_modelo_gridsearch(X, y, tipo_modelo, target_name):
     print(f"   ✅ Mejor configuración encontrada: {grid_search.best_params_}")
     
     # =================================================================
-    # NUEVO: GUARDAR EL HISTORIAL DEL GRID SEARCH EN UN CSV
+    # GUARDAR EL HISTORIAL DEL GRID SEARCH EN UN CSV
     # =================================================================
     # grid_search.cv_results_ contiene un diccionario con todo lo que ha probado
     df_cv_results = pd.DataFrame(grid_search.cv_results_)
@@ -210,7 +210,7 @@ def optimizar_modelo_gridsearch(X, y, tipo_modelo, target_name):
 # ==============================================================================
 modelos_a_probar = ["LinearRegression", "RandomForest"]
 
-# Diccionarios donde guardaré las IAs ya entrenadas y listas para usar
+# Diccionarios donde guardaré los ML ya entrenados y listos para usar
 mejores_modelos_p = {} # Modelos que predicen ISOPleasant
 mejores_modelos_e = {} # Modelos que predicen ISOEventful
 

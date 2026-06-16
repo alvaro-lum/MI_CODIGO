@@ -16,14 +16,14 @@ from sklearn.model_selection import train_test_split
 # Las típicas para medir cuánto se equivoca el modelo (MAE, RMSE) y cuánto acierta (R2)
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 # Estas dos son para medir si la distribución de las respuestas de un grupo 
-# se parece a lo que predice la IA (útil para cuando evalúo grupos/parejas en lugar de individuos)
+# se parece a lo que predice el ML (útil para cuando evalúo grupos/parejas en lugar de individuos)
 from scipy.stats import entropy # Para calcular KL Divergence (Kullback-Leibler)
 from scipy.spatial.distance import jensenshannon # Para calcular JS Divergence (Jensen-Shannon)
 
 # ==========================================
 # 2. LIBRERÍAS DE MODELOS DE MACHINE LEARNING
 # ==========================================
-# Aquí importo mi "batería" de inteligencias artificiales, de más simples a más complejas:
+# Aquí importo mi "batería" de ML, de más simples a más complejas:
 from sklearn.linear_model import LinearRegression, Lasso # Modelos lineales básicos
 from sklearn.ensemble import RandomForestRegressor       # Basado en múltiples árboles de decisión
 from sklearn.svm import SVR                              # Support Vector Regression (busca márgenes de error)
@@ -251,7 +251,7 @@ modelos_a_probar = [
     "XGBoost", "SVR", "GaussianProcess"
 ]
 
-# Diccionarios donde guardaré las IAs ya entrenadas y listas para usar
+# Diccionarios donde guardaré los ML ya entrenadas y listas para usar
 mejores_modelos_p = {} # Modelos que predicen ISOPleasant
 mejores_modelos_e = {} # Modelos que predicen ISOEventful
 
@@ -532,7 +532,7 @@ generar_auditoria_individual_completa(mejores_modelos_e, X_train, y_train_e, X_t
 print(f"✅ Auditorías de Fases finalizadas con éxito.")
 
 # ==============================================================================
-# 8.9. NUEVO: COMPARATIVA GLOBAL (TODAS LAS IAs AGRUPADAS)
+# 8.9. NUEVO: COMPARATIVA GLOBAL (TODAS LOS ML AGRUPADOS)
 # ==============================================================================
 def generar_comparativa_global_ias(df_resumen_global, target_name):
     """
@@ -632,7 +632,7 @@ generar_comparativa_global_ias(df_global_e, "ISOEventful")
 
 def extraer_e_imprimir_importancias(mejores_modelos, X_train, y_train, target_name):
     """
-    Entra en "el cerebro" de cada IA y extrae qué características del sonido pesaron más en sus decisiones.
+    Entra en "el cerebro" de cada ML y extrae qué características del sonido pesaron más en sus decisiones.
     No todos los modelos "hablan el mismo idioma", por eso separo por tipos:
     - Modelos Lineales: Nos dan Coeficientes (+/- influye).
     - Árboles (RF, XGB): Nos dan Gini Importance (% de uso del dato en los árboles).
@@ -691,7 +691,7 @@ def extraer_e_imprimir_importancias(mejores_modelos, X_train, y_train, target_na
             df_imp = df_imp[df_imp['Fuerza'] > 0.0].sort_values(by='Fuerza', ascending=False).head(15)
         else:
             # En árboles y permutaciones, no hay negativos. Un % más alto = más importancia
-            # Limpio las variables que directamente la IA ha ignorado (< 0.001)
+            # Limpio las variables que directamente el ML ha ignorado (< 0.001)
             df_imp = df_imp[df_imp['Valor'] > 0.001].sort_values(by='Valor', ascending=False).head(15)
             
         if len(df_imp) == 0: 

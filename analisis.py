@@ -79,7 +79,7 @@ try:
     filas_eliminadas_nulos = filas_sin_china - filas_limpias
     
     print(f"🧹 DEPURACIÓN ESTRICTA: Se han eliminado {filas_eliminadas_nulos} filas incompletas o duplicadas reales.")
-    print(f"✅ Datos listos para el análisis: {filas_limpias} participantes únicos con datos perfectos (China excluida).")
+    print(f"✅ Datos listos para el análisis: {filas_limpias} participantes únicos con datos perfectos.")
     
     # ---------------------------------------------------------
     # CÁLCULO GLOBAL DE COORDENADAS ISO AL INICIO
@@ -1218,7 +1218,7 @@ def resumir_caracteristicas_acusticas():
             print("❌ Opción no válida. Por favor, elige 0, 1, 2, 3 o 4.")
 
 def generar_csv_machine_learning_global():
-    """Opción 13: Genera y guarda el CSV Maestro con todos los datos físicos y las coordenadas ISO para la IA."""
+    """Opción 13: Genera y guarda el CSV Maestro con todos los datos físicos y las coordenadas ISO."""
     print("\n" + "="*60)
     print(" 🤖 GENERANDO CSV MAESTRO PARA MACHINE LEARNING (GLOBAL) 🤖 ")
     print("="*60)
@@ -1258,6 +1258,7 @@ def generar_csv_machine_learning_global():
         
     except Exception as e:
         print(f"❌ Error al generar el CSV Maestro para ML: {e}")
+
 def generar_histograma_ciudades():
     """
     Opción 14: Usa el DataFrame global (df_datos) ya depurado, 
@@ -1280,7 +1281,7 @@ def generar_histograma_ciudades():
             print("❌ No se encontró la columna 'locationid' en el dataset.")
             return
             
-        # 1. Mapeo de ciudades (Exactamente las que me pediste)
+        # 1. Mapeo de ciudades
         mapeo_ciudades = {
             'carlov': 'Granada',
             'campoprincipe': 'Granada',
@@ -1292,7 +1293,6 @@ def generar_histograma_ciudades():
         }
         
         # Asignamos la ciudad. Lo que no encaje en el diccionario, es Londres.
-        # (China ya no existe porque tu script lo purgó en el paso inicial de carga)
         df_plot['ciudad'] = df_plot[col_loc].astype(str).str.lower().map(mapeo_ciudades).fillna('Londres')
         
         # 2. Contar encuestas por Ciudad
@@ -1329,7 +1329,7 @@ def generar_histograma_ciudades():
         plt.ylim(0, y_max * 1.25)
         plt.tight_layout()
         
-        # 4. Guardar imagen usando la misma función ayudante de tu script
+        # 4. Guardar imagen
         carpeta = obtener_carpeta_guardado("General")
         ruta_img = carpeta / "14_Histograma_Muestra_Ciudades.png"
         

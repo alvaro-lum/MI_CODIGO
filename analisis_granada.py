@@ -1170,7 +1170,7 @@ def generar_csv_machine_learning_granada():
         else:
             print("✅ Coordenadas ISO ya detectadas en el dataset de .Granada")
 
-        # Aseguramos que la carpeta destino exista (asumiendo que tu variable es carpeta_graficas_base)
+        # Aseguramos que la carpeta destino exista
         carpeta_ml = carpeta_graficas_base / 'General'
         carpeta_ml.mkdir(parents=True, exist_ok=True)
         
@@ -1193,7 +1193,6 @@ def generar_csv_machine_learning_granada():
 # ==========================================
 if __name__ == "__main__":
     while True:
-        # Aquí le damos el toque visual (pintamos el menú)
         print("\n" + "🇬🇧"*25)
         print(" 🕰️  MENÚ DE ANÁLISIS TFG SOUNDSCAPE (GRANADA) 🎡 ")
         print("🇬🇧"*25)

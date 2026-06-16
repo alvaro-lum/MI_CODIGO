@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import warnings
-from scipy.stats import skew # Importamos 'skew' para calcular la asimetría (skewness) matemática del espectro
+from scipy.stats import skew
 
 # Ocultamos avisos técnicos de las librerías para mantener la terminal limpia
 warnings.filterwarnings('ignore')
@@ -266,7 +266,7 @@ if __name__ == "__main__":
         print("1. Espectrograma Lineal (Hz)")
         print("2. Espectrograma de Mel")
         print("3. Gráfico MFCC (Visual)")
-        print("4. Mapear audios con CSV original (PASO PREVIO AL 6)")
+        print("4. Mapear audios con CSV original (PASO PREVIO AL 5)")
         print("5. EXTRAER CARACTERÍSTICAS A CSV (F0, Inarmonicidad, MFCCs, etc.)")
         print("0. Salir")
         

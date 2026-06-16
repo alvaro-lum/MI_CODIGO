@@ -481,7 +481,7 @@ generar_auditoria_individual_completa(mejores_modelos_e, X_train, y_train_e, X_t
 print(f"✅ Auditorías de Fases finalizadas con éxito.")
 
 # ==============================================================================
-# 8.9. COMPARATIVA GLOBAL (TODAS LAS IAs AGRUPADAS)
+# 8.9. COMPARATIVA GLOBAL (TODAS LOS ML AGRUPADOS)
 # ==============================================================================
 def generar_comparativa_global_ias(df_resumen_global, target_name):
     print(f"\n" + "🌟"*20)

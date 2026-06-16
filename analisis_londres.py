@@ -1172,7 +1172,7 @@ def generar_csv_machine_learning_londres():
         else:
             print("✅ Coordenadas ISO ya detectadas en el dataset de Londres.")
 
-        # Aseguramos que la carpeta destino exista (asumiendo que tu variable es carpeta_graficas_base)
+        # Aseguramos que la carpeta destino exista
         carpeta_ml = carpeta_graficas_base / 'General'
         carpeta_ml.mkdir(parents=True, exist_ok=True)
         
@@ -1195,7 +1195,6 @@ def generar_csv_machine_learning_londres():
 # ==========================================
 if __name__ == "__main__":
     while True:
-        # Aquí le damos el toque visual (pintamos el menú)
         print("\n" + "🇬🇧"*25)
         print(" 🕰️  MENÚ DE ANÁLISIS TFG SOUNDSCAPE (LONDRES) 🎡 ")
         print("🇬🇧"*25)

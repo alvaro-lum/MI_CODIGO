@@ -15,14 +15,14 @@ import seaborn as sns
 # Las típicas para medir cuánto se equivoca el modelo (MAE, RMSE) y cuánto acierta (R2)
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 # Estas dos son para medir si la distribución de las respuestas de un grupo 
-# se parece a lo que predice la IA (útil para cuando evalúo grupos/parejas en lugar de individuos)
+# se parece a lo que predice el ML (útil para cuando evalúo grupos/parejas en lugar de individuos)
 from scipy.stats import entropy # Para calcular KL Divergence (Kullback-Leibler)
 from scipy.spatial.distance import jensenshannon # Para calcular JS Divergence (Jensen-Shannon)
 
 # ==========================================
 # 2. LIBRERÍAS DE MODELOS DE MACHINE LEARNING
 # ==========================================
-# Aquí importo mi "batería" de inteligencias artificiales, de más simples a más complejas:
+# Aquí importo mi "batería" de Machin Learning, de más simples a más complejas:
 from sklearn.linear_model import LinearRegression, Lasso # Modelos lineales básicos
 from sklearn.ensemble import RandomForestRegressor       # Basado en múltiples árboles de decisión
 from sklearn.svm import SVR                              # Support Vector Regression (busca márgenes de error)
@@ -137,7 +137,7 @@ def aislar_variables_ml(df):
     return X, Y_p, Y_e, mascara_grupos
 
 # === ESTRATEGIA DE VALIDACIÓN ESPACIAL ===
-# Para demostrar que mi IA generaliza bien y no solo "memoriza",
+# Para demostrar que mi ML generaliza bien y no solo "memoriza",
 # entreno con 3 ciudades y examino al modelo con una ciudad que NUNCA ha visto.
 ciudad_test = 'Groningen'
 
@@ -147,7 +147,7 @@ if ciudad_test in dfs_ciudades:
     # El examen final (datos nunca vistos)
     df_test_crudo = dfs_ciudades[ciudad_test].copy()
     
-    # Junto los datos de las otras 3 ciudades para crear el material de estudio de la IA
+    # Junto los datos de las otras 3 ciudades para crear el material de estudio del ML
     lista_entrenamiento = [df for ciudad, df in dfs_ciudades.items() if ciudad != ciudad_test]
     df_train_crudo = pd.concat(lista_entrenamiento, ignore_index=True)
     
@@ -246,7 +246,7 @@ modelos_a_probar = [
     "XGBoost", "SVR", "GaussianProcess"
 ]
 
-# Diccionarios donde guardaré las IAs ya entrenadas y listas para usar
+# Diccionarios donde guardaré los ML ya entrenados y listos para usar
 mejores_modelos_p = {} # Modelos que predicen ISOPleasant
 mejores_modelos_e = {} # Modelos que predicen ISOEventful
 
@@ -526,7 +526,7 @@ generar_auditoria_individual_completa(mejores_modelos_p, X_train, y_train_p, X_t
 generar_auditoria_individual_completa(mejores_modelos_e, X_train, y_train_e, X_test, y_test_e, mask_train_grupos, mask_test_grupos, "ISOEventful")
 print(f"✅ Auditorías de Fases finalizadas con éxito.")
 # ==============================================================================
-# 8.9. COMPARATIVA GLOBAL (TODAS LAS IAs AGRUPADAS) - VERSIÓN MSE
+# 8.9. COMPARATIVA GLOBAL (TODAS LOS ML AGRUPADOS) - VERSIÓN MSE
 # ==============================================================================
 def generar_comparativa_global_ias(df_resumen_global, target_name):
     """
@@ -615,7 +615,7 @@ generar_comparativa_global_ias(df_global_e, "ISOEventful")
 
 def extraer_e_imprimir_importancias(mejores_modelos, X_train, y_train, target_name):
     """
-    Entra en "el cerebro" de cada IA y extrae qué características del sonido pesaron más en sus decisiones.
+    Entra en "el cerebro" de cada ML y extrae qué características del sonido pesaron más en sus decisiones.
     No todos los modelos "hablan el mismo idioma", por eso separo por tipos:
     - Modelos Lineales: Nos dan Coeficientes (+/- influye).
     - Árboles (RF, XGB): Nos dan Gini Importance (% de uso del dato en los árboles).
@@ -674,7 +674,7 @@ def extraer_e_imprimir_importancias(mejores_modelos, X_train, y_train, target_na
             df_imp = df_imp[df_imp['Fuerza'] > 0.0].sort_values(by='Fuerza', ascending=False).head(15)
         else:
             # En árboles y permutaciones, no hay negativos. Un % más alto = más importancia
-            # Limpio las variables que directamente la IA ha ignorado (< 0.001)
+            # Limpio las variables que directamente el ML ha ignorado (< 0.001)
             df_imp = df_imp[df_imp['Valor'] > 0.001].sort_values(by='Valor', ascending=False).head(15)
             
         if len(df_imp) == 0: 
@@ -702,7 +702,7 @@ def extraer_e_imprimir_importancias(mejores_modelos, X_train, y_train, target_na
         # Lógica matemática pesada para colocar el texto flotante de los números sin que tape la barra
         for i, val in enumerate(df_imp['Valor']):
             texto = f"{val:.3f}" if es_coeficiente else f"{val:.4f}" 
-            # ¡AQUÍ ESTÁ LA CORRECCIÓN MÁGICA! uso abs() estándar de Python porque val es un número suelto, no una Serie
+            #uso abs() estándar de Python porque val es un número suelto, no una Serie
             offset = (df_imp['Valor'].max() * 0.02) if val >= 0 else -(abs(df_imp['Valor'].min()) * 0.02)
             ha_align = 'left' if val >= 0 else 'right'
             ax.text(val + offset, i, texto, va='center', ha=ha_align, fontsize=10, fontweight='bold')

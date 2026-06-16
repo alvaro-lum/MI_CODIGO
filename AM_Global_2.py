@@ -20,7 +20,7 @@ from scipy.spatial.distance import jensenshannon # Para calcular JS Divergence (
 # ==========================================
 # 2. LIBRERÍAS DE MODELOS DE MACHINE LEARNING
 # ==========================================
-# Mi "plantilla" de inteligencias artificiales, ordenadas de más simples a más complejas:
+# Mi "plantilla" de ML, ordenadas de más simples a más complejas:
 from sklearn.linear_model import LinearRegression, Lasso # Modelos lineales (fáciles de interpretar)
 from sklearn.ensemble import RandomForestRegressor       # Un bosque lleno de árboles de decisión
 from sklearn.svm import SVR                              # Support Vector Regression (ajusta un tubo de tolerancia)
@@ -98,7 +98,7 @@ def aislar_variables_ml(df):
     Y_p = df['isopleasant'].fillna(0)
     Y_e = df['isoeventful'].fillna(0)
     
-    # Lista negra de columnas: IDs, cosas geográficas que la IA no debe saber, 
+    # Lista negra de columnas: IDs, cosas geográficas que el ML no debe saber, 
     # y las respuestas directas de la encuesta que desvelarían el resultado (eso sería hacer trampa)
     columnas_prohibidas = [
         'recordid', 'groupid', 'sessionid', 'locationid', 'start_time', 'end_time', 
@@ -114,7 +114,7 @@ def aislar_variables_ml(df):
     # Solo borro las prohibidas que de verdad existan en este DataFrame para evitar errores
     columnas_a_borrar = [col for col in columnas_prohibidas if col in df.columns]
     X = df.drop(columns=columnas_a_borrar).fillna(0)
-    # Me aseguro al 100% de que la matriz X sea numérica (las IAs no entienden de texto)
+    # Me aseguro al 100% de que la matriz X sea numérica (los ML no entienden de texto)
     X = X.apply(pd.to_numeric, errors='coerce').fillna(0)
     
     return X, Y_p, Y_e
@@ -253,7 +253,7 @@ print("\n🎉 Todos los modelos han sido entrenados y optimizados con éxito.")
 def calcular_metricas_distribucion(y_true, y_pred):
     """
     Calcula métricas de consenso poblacional.
-    Me dice si mi IA ha capturado bien "la vibra general" de la ciudad,
+    Me dice si mi ML ha capturado bien "la vibra general" de la ciudad,
     comparando los histogramas de respuestas reales vs predichas.
     """
     if len(y_true) < 2: return 0, 0, 0 
@@ -330,7 +330,7 @@ df_global_e = evaluar_ciudad_completa(mejores_modelos_e, X_test, y_test_e, "ISOE
 # ==============================================================================
 def generar_auditoria_individual(mejores_modelos, X_train, y_train, X_test, y_test, target_name):
     """
-    Genera una gráfica 2x2 por modelo comprobando si la IA ha aprendido o solo memorizado.
+    Genera una gráfica 2x2 por modelo comprobando si el ML ha aprendido o solo memorizado.
     1. Train (Memorización): Nota sobre lo que ya estudió.
     2. Validation (Robustez Interna): Nota de simulacros internos.
     3. Test (Generalización a Groningen): La nota del examen final real.
@@ -420,12 +420,12 @@ generar_auditoria_individual(mejores_modelos_p, X_train, y_train_p, X_test, y_te
 generar_auditoria_individual(mejores_modelos_e, X_train, y_train_e, X_test, y_test_e, "ISOEventful")
 
 # ==============================================================================
-# 8.7. NUEVO: COMPARATIVA GLOBAL (TODAS LAS IAs AGRUPADAS)
+# 8.7. NUEVO: COMPARATIVA GLOBAL (TODAS LOS ML AGRUPADOS)
 # ==============================================================================
 def generar_comparativa_global_ias(df_resumen_global, target_name):
     """
     Cojo la tabla del ranking universal y monto un barplot agrupado
-    para ver de un vistazo qué IA domina en qué métrica.
+    para ver de un vistazo qué ML domina en qué métrica.
     """
     print(f"\n" + "🌟"*20)
     print(f" DIBUJANDO COMPARATIVA GLOBAL PARA: {target_name.upper()} ")
@@ -503,7 +503,7 @@ from sklearn.inspection import permutation_importance
 
 def extraer_e_imprimir_importancias(mejores_modelos, X_train, y_train, target_name):
     """
-    Abro "la cabeza" de cada IA para ver a qué variables acústicas le está haciendo caso.
+    Abro "la cabeza" de cada ML para ver a qué variables acústicas le está haciendo caso.
     - Modelos Lineales -> Me dan los Coeficientes directamente.
     - Árboles -> Me dan Feature Importances (Gini).
     - Cajas Negras (SVM, GP) -> Uso Permutation Importance (mezclar una columna a ver si falla).
@@ -643,11 +643,11 @@ def generar_super_prediccion_ensamblada(mejores_modelos, df_ranking_universal, X
     
     print(f"   📊 SÚPER MODELO -> R2: {r2_super:.4f} | MAE: {mae_super:.4f} | RMSE: {rmse_super:.4f}")
     
-    # Dibujo la matriz de dispersión (Realidad vs IA)
+    # Dibujo la matriz de dispersión (Realidad vs ML)
     plt.figure(figsize=(8, 8))
     sns.scatterplot(x=y_test_real, y=super_prediccion, alpha=0.6, color='#8e44ad', s=60, edgecolor='white')
     
-    # Trazo la diagonal roja: donde los puntos deberían caer si mi IA fuera adivina al 100%
+    # Trazo la diagonal roja: donde los puntos deberían caer si mi ML fuera adivina al 100%
     limite_min = min(y_test_real.min(), super_prediccion.min()) - 0.1
     limite_max = max(y_test_real.max(), super_prediccion.max()) + 0.1
     plt.plot([limite_min, limite_max], [limite_min, limite_max], color='red', linestyle='--', linewidth=2)
