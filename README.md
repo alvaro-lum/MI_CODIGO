@@ -121,6 +121,48 @@ Y los número entre 8 y 14, ambos incluidos, cuando los ejecutamos estos se gene
 
 > ⚠️ **Aviso:** Los códigos del 8 al 14 tardan en ejecutarse al tener que realizar todo el proceso de **GrideSearch** y demás (Tiempo aproximado entre 10-15 min, posible que sean 20 min). Y el código número 6, el de audio, tiene una opción, la última que encontrarás, que al ejecutarla tardará mucho tiempo en completarse al juntar muchos datos de tantos audios (En mi caso fueron aproximadamente 5h). 
 
+## Archivos CSV.
+Aquí hablaré brevemente de los archivos CSV que podemos encontrarnos a lo largo de este repositorio de maanera ordenada.
+
+Primero, de las carpetas de la 1 - 5 incluidas, podemos encontrarnos por un lado nada más abrir las carpetas con:
+
+1. ISD_Datos_*****_Limpios_TFG.csv: Archivos que, variando la carpeta en la que se encuentra, nos indica los datos limpios de nuestra base de datos, es decir, pasado la depuración.
+
+2. ISD_Parametros_ISO_*****_TFG.csv: En estos archivos nos encontraremos un resumen de los valores (Pleasant, Eventful, ISOEventful e ISOPleasant) de la base de datos limia.
+
+Ahora miramos dentro de la carpeta General de las 1 - 5 y encontramos:
+1. 11A_Resumen_Subjetivo_*****_Medias.csv: Archivos que nos muestran las medias de los PAQ por localización dentro de cada ciudad.
+
+2. 11B_Resumen_Subjetivo_*****_Medianas.csv: Lo mismo que el anterior pero con las medianas.
+
+3. 12A_Datos_Acusticos_*****_Filas_crudas.csv: Archivos que, partiendo del csv de datos limpios, solo incluye las características acústicas y psicoacústicas por fila de datos.
+
+4. 12B_Resumen_Medias_*****_Acusticas.csv: Archivos que nos muestran las medias por localización de las características acústicas y psicoacústicas.
+
+5. 12C_Resumen_Medianas_*****_Acusticas.csv: Igual que lo anterior pero con las medianas.
+
+> ℹ️ **Nota:** Los simbolos * son variaciones del nombre del archivo en función de la carpeta en la que se encuentre, ya sea Londres, Granada, etc...
+
+Si ahora nos vamos a la carpeta número 6, podemos enccontrarnos con dos archivos:
+1. ISD_Caracteristicas_Frecuenciales.csv: Un archivo que nos incluye mas de 30 características de los audios que disponemos del repositorio de Zenodo entre medias y desvianciones estandar. (MFCC, pitch, chroma, etc...)
+
+2. ISD_Cruce_Audios_Filtrado.csv: Archivo creado para correlacionar cada fila de datos con el nombre del audio que emplea. (El nombre coincide con la columna GroupID)
+
+En las carpetas número 7 y la 15 nos encontramos con que en la 7 tenemos un csv para ver filas repetidas (Esto solo fue un experimento de comprobación, la realidad es que no hay filas repetidas) y en la carpeta número 15 disponemos de csv tanto para el ranking del gridesearch de Regresión Lineal y Random Forest y otros csv con los valores de las métricas. Esto solo fueron pruebas.
+
+Y vamos con las carpetas de la 8 a la 14. En estas podemos encontrarnos varios csv, dependiendo de la carpeta serán unos u otros:
+
+1. Grupos_ISOEventful_Rank.csv o Grupos_ISOPleasant_Rank.csv : Nos indica el ranking de los valores JS, KL y DME.
+
+2. Singles_ISOEventful_Rank.csv o Singles_ISOPleasant_Rank.csv: Nos indica un ranking de los valores MAE, RMSE, MSE y $R^2$.
+
+3. Resumen_Global_Metricas_ISOEventful.csv o Resumen_Universal_ISOEventful.csv: Nos indican una tabla general de todas las métricas para la componente ISOEventful.
+
+4. Resumen_Global_Metricas_ISOPeasant.csv o Resumen_Universal_ISOPleasant.csv: Al igual que la anterior, un resumen general de todas las métricas para la componente ISOPleasant.
+
+5. GridSearch_ÇÇÇÇÇ_ISOEventful.csv o GridSearch_ÇÇÇÇÇ_ISOPleasant.csv: Nos indican un ranking de los hiperparámetros del GridSearch del experiemnto. Estos solo se encuentran en las carpetas 14.
+
+> ℹ️ **Nota:** Los simbolos Ç indican los diferentes ML que varian según el nombre. Siendo LiearRegression y RandomForest.
 ### Algunos extras.
 
 Puedes comprobar que además de todo lo explicado con anterioridad, podemos encontrar el archivo requirements.txt que ya expliqué y el documento ISD v1.0 Data.csv. Este archivo es la base de datos general extraida del repositorio de SSID y del que partimos en todos los códigos del 1 al 6.
