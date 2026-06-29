@@ -299,7 +299,7 @@ def evaluar_ciudad_completa(mejores_modelos, X_test, y_test_real, target_name):
         
         resultados_evaluacion.append({
             "Modelo": nombre_modelo,
-            "MAE (Error Absoluto)": mae,
+            "MAE": mae,
             "RMSE": rmse,
             "MSE": mse,
             "R2 (Varianza)": r2,
@@ -361,10 +361,10 @@ def generar_auditoria_individual(mejores_modelos, X_train, y_train, X_test, y_te
         for fase_nombre, y_real, y_pred in fases:
             mse = mean_squared_error(y_real, y_pred)
             filas.extend([
-                {'Métrica': 'R2 (Varianza Explicada)', 'Valor': r2_score(y_real, y_pred), 'Fase': fase_nombre},
-                {'Métrica': 'MAE (Error Absoluto)', 'Valor': mean_absolute_error(y_real, y_pred), 'Fase': fase_nombre},
-                {'Métrica': 'RMSE (Error Medio)', 'Valor': np.sqrt(mse), 'Fase': fase_nombre},
-                {'Métrica': 'MSE (Error Cuadrático)', 'Valor': mse, 'Fase': fase_nombre}
+                {'Métrica': 'R2', 'Valor': r2_score(y_real, y_pred), 'Fase': fase_nombre},
+                {'Métrica': 'MAE', 'Valor': mean_absolute_error(y_real, y_pred), 'Fase': fase_nombre},
+                {'Métrica': 'RMSE', 'Valor': np.sqrt(mse), 'Fase': fase_nombre},
+                {'Métrica': 'MSE', 'Valor': mse, 'Fase': fase_nombre}
             ])
             
         df_plot = pd.DataFrame(filas)
@@ -373,7 +373,7 @@ def generar_auditoria_individual(mejores_modelos, X_train, y_train, X_test, y_te
         fig, axes = plt.subplots(2, 2, figsize=(14, 10))
         fig.suptitle(f'Auditoría de Generalización: {nombre}\n({target_name.upper()})', fontsize=18, fontweight='bold', y=0.98)
         
-        metricas_unicas = ['R2 (Varianza Explicada)', 'MAE (Error Absoluto)', 'RMSE (Error Medio)', 'MSE (Error Cuadrático)']
+        metricas_unicas = ['R2', 'MAE', 'RMSE', 'MSE']
         # Uso semáforo de colores: Azul (bien/cómodo), Naranja (aviso), Rojo (fuego real/test)
         colores = ["#3498db", "#f39c12", "#e74c3c"] 
         
@@ -437,7 +437,7 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
 
     # 1. SELECCIÓN DE MÉTRICAS A COMPARAR
     # Cojo el MAE, RMSE y MSE (evalúan a nivel individuo)
-    metricas_cols = ['MAE (Error Absoluto)', 'RMSE', 'MSE']
+    metricas_cols = ['MAE', 'RMSE', 'MSE']
     
     # Comprobación de seguridad por si he cambiado nombres arriba
     columnas_presentes = [col for col in metricas_cols if col in df_resumen_global.columns]
@@ -468,7 +468,7 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
     plt.title(f'Rendimiento Global de los Algoritmos\nObjetivo: {target_name.upper()}', 
               fontsize=16, fontweight='bold', pad=20)
     plt.xticks(rotation=15, ha='right', fontsize=12, fontweight='bold')
-    plt.xlabel('Algoritmos de Inteligencia Artificial', fontsize=13, fontweight='bold', labelpad=15)
+    plt.xlabel('Algoritmos de Machine Learning', fontsize=13, fontweight='bold', labelpad=15)
     plt.ylabel('Puntuación de la Métrica (Más bajo es MEJOR)', fontsize=13, fontweight='bold')
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.legend(title='Métricas de Evaluación', loc='upper right', framealpha=0.9, fontsize=11)

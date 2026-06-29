@@ -492,7 +492,7 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
         print(f"   ⚠️ No hay datos globales para {target_name}. Saltando gráfica.")
         return
 
-    metricas_cols = ['MAE (Error Absoluto)', 'RMSE (Error Raíz Cuadrada)', 'MSE']
+    metricas_cols = ['MAE', 'RMSE', 'MSE']
     columnas_presentes = [col for col in metricas_cols if col in df_resumen_global.columns]
     
     if not columnas_presentes:
@@ -507,7 +507,7 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
     )
     
     plt.figure(figsize=(15, 8))
-    colores = ['#3498db', '#9b59b6', '#2ecc71'] 
+    colores = ["#40e7b0", "#85124b", "#eb6565"] 
     
     ax = sns.barplot(
         data=df_melted, 
@@ -519,10 +519,10 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
         linewidth=1.2
     )
     
-    plt.title(f'Rendimiento Global de los Algoritmos de IA en Londres\nObjetivo: {target_name.upper()}', 
+    plt.title(f'Rendimiento Global de los Algoritmos en Londres\nObjetivo: {target_name.upper()}', 
               fontsize=16, fontweight='bold', pad=20)
     plt.xticks(rotation=15, ha='right', fontsize=12, fontweight='bold')
-    plt.xlabel('Algoritmos de Inteligencia Artificial', fontsize=13, fontweight='bold', labelpad=15)
+    plt.xlabel('Algoritmos de Machine Learning', fontsize=13, fontweight='bold', labelpad=15)
     plt.ylabel('Puntuación de la Métrica (Más bajo es MEJOR)', fontsize=13, fontweight='bold')
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.legend(title='Métricas de Evaluación', loc='upper right', framealpha=0.9, fontsize=11)

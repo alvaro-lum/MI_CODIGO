@@ -545,7 +545,7 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
 
     # 1. SELECCIÓN DE MÉTRICAS A COMPARAR
     # Elegimos dos métricas de precisión individual (MAE, RMSE, MSE) 
-    metricas_cols = ['MAE (Error Absoluto)', 'RMSE (Error Raíz Cuadrada)', 'MSE']
+    metricas_cols = ['MAE', 'RMSE', 'MSE']
     
     # Comprobación de seguridad: Asegurar que las columnas existen en la tabla
     columnas_presentes = [col for col in metricas_cols if col in df_resumen_global.columns]
@@ -569,7 +569,7 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
     plt.figure(figsize=(15, 8))
     
     # Paleta de colores distintiva para cada métrica
-    colores = ['#3498db', '#9b59b6', '#2ecc71'] 
+    colores = ["#e91dd8", "#f58240", "#e0ee19"] 
     
     # Barplot agrupado
     ax = sns.barplot(
@@ -583,10 +583,10 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
     )
     
     # Estética y Títulos
-    plt.title(f'Rendimiento Global de los Algoritmos de IA en Londres\nObjetivo: {target_name.upper()}', 
+    plt.title(f'Rendimiento Global de los Algoritmos en Londres\nObjetivo: {target_name.upper()}', 
               fontsize=16, fontweight='bold', pad=20)
     plt.xticks(rotation=15, ha='right', fontsize=12, fontweight='bold')
-    plt.xlabel('Algoritmos de Inteligencia Artificial', fontsize=13, fontweight='bold', labelpad=15)
+    plt.xlabel('Algoritmos de Machine Learning', fontsize=13, fontweight='bold', labelpad=15)
     plt.ylabel('Puntuación de la Métrica (Más bajo es MEJOR)', fontsize=13, fontweight='bold')
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     
