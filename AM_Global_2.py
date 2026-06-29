@@ -302,7 +302,7 @@ def evaluar_ciudad_completa(mejores_modelos, X_test, y_test_real, target_name):
             "MAE": mae,
             "RMSE": rmse,
             "MSE": mse,
-            "R2 (Varianza)": r2,
+            "R2": r2,
             "JS Divergence": js,
             "KL Divergence": kl,
             "DME": dme
@@ -310,7 +310,7 @@ def evaluar_ciudad_completa(mejores_modelos, X_test, y_test_real, target_name):
         
     df_resultados = pd.DataFrame(resultados_evaluacion)
     # Ordeno el ranking fijándome en quién tiene menor error MAE
-    df_resultados = df_resultados.sort_values(by="MAE (Error Absoluto)", ascending=True).reset_index(drop=True)
+    df_resultados = df_resultados.sort_values(by="MAE", ascending=True).reset_index(drop=True)
     df_resultados = df_resultados.round(4)
     
     print(df_resultados.to_string(index=False))
@@ -624,8 +624,8 @@ def generar_super_prediccion_ensamblada(mejores_modelos, df_ranking_universal, X
     
     if df_lineales.empty or df_complejos.empty: return
         
-    mejor_lineal = df_lineales.sort_values(by='MAE (Error Absoluto)').iloc[0]['Modelo']
-    mejor_complejo = df_complejos.sort_values(by='MAE (Error Absoluto)').iloc[0]['Modelo']
+    mejor_lineal = df_lineales.sort_values(by='MAE').iloc[0]['Modelo']
+    mejor_complejo = df_complejos.sort_values(by='MAE').iloc[0]['Modelo']
     
     print(f"   🏆 Campeón Lineal: {mejor_lineal} | Campeón Complejo: {mejor_complejo}")
     

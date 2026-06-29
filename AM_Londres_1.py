@@ -297,15 +297,15 @@ def evaluar_individuos_singles(mejores_modelos, X_test, y_test_real, mask_grupos
         
         resultados_evaluacion.append({
             "Modelo": nombre_modelo,
-            "R2 (Varianza Explicada)": r2,
-            "MAE (Error Absoluto)": mae,
-            "RMSE (Error Raíz Cuadrada)": rmse,
+            "R2": r2,
+            "MAE": mae,
+            "RMSE": rmse,
             "MSE": mse
         })
         
     df_resultados = pd.DataFrame(resultados_evaluacion)
     # Ordeno de mejor a peor según R2
-    df_resultados = df_resultados.sort_values(by="R2 (Varianza Explicada)", ascending=False).reset_index(drop=True)
+    df_resultados = df_resultados.sort_values(by="R2", ascending=False).reset_index(drop=True)
     df_resultados = df_resultados.round(4)
     
     print(df_resultados.to_string(index=False))
@@ -397,7 +397,7 @@ def generar_tabla_resumen_global(df_singles, df_grupos, target_name):
     # Hago un merge (como un BUSCARV en Excel) uniendo por la columna 'Modelo'
     df_global = pd.merge(df_singles, df_grupos, on='Modelo', how='inner')
     # Ordeno la tabla general fijándome en quién tiene menor MAE
-    df_global = df_global.sort_values(by='MAE (Error Absoluto)', ascending=True).reset_index(drop=True)
+    df_global = df_global.sort_values(by='MAE', ascending=True).reset_index(drop=True)
 
     print(df_global.to_string(index=False))
     
@@ -468,10 +468,10 @@ def generar_auditoria_individual_completa(mejores_modelos, X_train, y_train, X_t
         for fase_nombre, y_real, y_pred in fases:
             mse = mean_squared_error(y_real, y_pred)
             filas_plot.extend([
-                {'Métrica': 'R2 (Nota /100%)', 'Valor': r2_score(y_real, y_pred), 'Fase': fase_nombre},
-                {'Métrica': 'MAE (Error Absoluto)', 'Valor': mean_absolute_error(y_real, y_pred), 'Fase': fase_nombre},
-                {'Métrica': 'RMSE (Error Medio)', 'Valor': np.sqrt(mse), 'Fase': fase_nombre},
-                {'Métrica': 'MSE (Error² Medio)', 'Valor': mse, 'Fase': fase_nombre}
+                {'Métrica': 'R2', 'Valor': r2_score(y_real, y_pred), 'Fase': fase_nombre},
+                {'Métrica': 'MAE', 'Valor': mean_absolute_error(y_real, y_pred), 'Fase': fase_nombre},
+                {'Métrica': 'RMSE', 'Valor': np.sqrt(mse), 'Fase': fase_nombre},
+                {'Métrica': 'MSE', 'Valor': mse, 'Fase': fase_nombre}
             ])
             
         df_plot = pd.DataFrame(filas_plot)
@@ -481,7 +481,7 @@ def generar_auditoria_individual_completa(mejores_modelos, X_train, y_train, X_t
         fig.suptitle(f'Auditoría de Aprendizaje y Generalización\nModelo: {nombre_modelo} ({target_name})', 
                      fontsize=18, fontweight='bold', y=0.98)
         
-        metricas_unicas = ['R2 (Nota /100%)', 'MAE (Error Absoluto)', 'RMSE (Error Medio)', 'MSE (Error² Medio)']
+        metricas_unicas = ['R2', 'MAE', 'RMSE', 'MSE']
         colores_fases = ["#3498db", "#f39c12", "#e74c3c"] # Azul (Train), Naranja (Val), Rojo (Test)
         
         for i, ax in enumerate(axes.flatten()):
@@ -761,8 +761,8 @@ def generar_super_prediccion_ensamblada(mejores_modelos, df_rank_singles, X_test
     if df_lineales.empty or df_complejos.empty: return
         
     # Elijo al campeón de cada liga basándome en quién tiene el menor error absoluto (MAE)
-    mejor_lineal = df_lineales.sort_values(by='MAE (Error Absoluto)').iloc[0]['Modelo']
-    mejor_complejo = df_complejos.sort_values(by='MAE (Error Absoluto)').iloc[0]['Modelo']
+    mejor_lineal = df_lineales.sort_values(by='MAE').iloc[0]['Modelo']
+    mejor_complejo = df_complejos.sort_values(by='MAE').iloc[0]['Modelo']
     
     print(f"   🏆 Campeón Lineal: {mejor_lineal}")
     print(f"   🏆 Campeón Complejo: {mejor_complejo}")
