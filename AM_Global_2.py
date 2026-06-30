@@ -457,7 +457,7 @@ def generar_comparativa_global_ias(df_resumen_global, target_name):
     
     # 3. DISEÑO DE LA GRÁFICA
     plt.figure(figsize=(15, 8))
-    colores = ['#3498db', '#9b59b6', '#2ecc71'] 
+    colores = ["#6df890", "#f7e68a", "#c46feb"] 
     
     ax = sns.barplot(
         data=df_melted, x='Modelo', y='Valor', hue='Métrica', 
